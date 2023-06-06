@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>Sample6 | LAUREL</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<!-- jQuery library -->
+	<script src="js/jquery-3.6.4.min.js"></script>
+	<!-- Popper JS -->
+	<script src="js/popper.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="js/bootstrap.bundle.min.js"></script>
+
+	<script>
+		// Check if passwords match
+		function validatePasswords() {
+			var inPass = $("#ipass").val(); // Initial Password
+			var cfPass = $("#cpass").val(); // Confirm Password
+			var passMatch = inPass === cfPass;
+
+			if (passMatch) {
+				$("#validfeedback-msg").html('Passwords match');
+				$("#cpass").removeClass('is-invalid').addClass('is-valid');
+			} else {
+				$("#invalidfeedback-msg").html('Password does not match');
+				$("#cpass").removeClass('is-valid').addClass('is-invalid');
+			}
+		}
+
+		(function () {
+			'use strict'; window.addEventListener('load', function () {
+				var forms = document.getElementsByClassName('needs-validation');
+				var validation = Array.prototype.filter.call(forms, function (form) {
+					form.addEventListener('submit', function (event) {
+						if (form.checkValidity() === false) {
+							event.preventDefault();
+							event.stopPropagation();
+						}
+						form.classList.add('was-validated');
+					}, false);
+				});
+
+				// No Spaces in Passwords
+				$("#uname, #ipass, #cpass, #eml").on({
+					keydown: function (event) {
+						if (event.which === 32)
+							return false;
+					},
+					change: function () {
+						this.value = this.value.replace(/\s/g, "");
+					}
+				});
+			}, false);
+
+		})();
+	</script>
+
+	<style>
+		input {
+			border-color: #c9ada7;
+		}
+
+		input[type=text] {
+			width: 100%;
+			padding: 10px 15px;
+			margin: 5px 0;
+			box-sizing: border-box;
+		}
+
+		input[type=password] {
+			width: 100%;
+			padding: 10px 15px;
+			margin: 5px 0;
+			box-sizing: border-box;
+		}
+
+		input[type="radio"] {
+			margin-left: 10px;
+			margin-right: 2px;
+		}
+
+		input[type="checkbox"] {
+			margin-left: 10px;
+			margin-right: 2px;
+		}
+
+		input[type=submit] {
+			width: 75%;
+			padding: 10px 15px;
+			margin: 5px 0;
+		}
+
+		select {
+			margin-left: 10px;
+			margin-right: 2px;
+		}
+
+		label {
+			font-weight: 400;
+		}
+
+		.outer-container {
+			background-color: #472415;
+		}
+
+		.container {
+			max-width: 75%;
+			/* max-height: 50%; */
+		}
+
+		.h1-font {
+			font-weight: 400;
+		}
+
+		.h2-font {
+			font-weight: 300;
+		}
+
+		#ctnt-spc-top {
+			background-color: #472415;
+		}
+
+		#ctnt-spc-bot {
+			background-color: #472415;
+		}
+
+		#ctnt-img {
+			background-image: url("photos/subscription-box-content-bg.jpeg");
+			/* Photo Source: https://www.smartertravel.com/best-subscription-boxes-for-travelers/ */
+			background-repeat: no-repeat;
+			background-size: cover;
+			border-radius: 25px 0px 0px 0px;
+			/* Top-Left Top-Right Bottom-Right Bottom-Left */
+		}
+
+		#ctnt-spc1 {
+			background-color: #ffdda8;
+		}
+
+		#ctnt-spc2 {
+			background-color: #ffdda8;
+			border-radius: 0px 25px 0px 0px;
+			/* Top-Left Top-Right Bottom-Right Bottom-Left */
+		}
+
+		#ctnt-info {
+			background-color: #ffdda8;
+		}
+
+		#ftr {
+			background-color: #ffffff;
+			border-radius: 0px 0px 25px 25px;
+			/* Top-Left Top-Right Bottom-Right Bottom-Left */
+		}
+
+		#ftr-info {
+			font-size: 20px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="outer-container">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12" id="ctnt-spc-top">
+					<br>
+					<br>
+				</div>
+			</div>
+			<div class="row">
+				<!-- CONTENT -->
+				<div class="col-lg-5" id="ctnt-img"></div>
+				<div class="col-lg-1" id="ctnt-spc1"></div>
+				<div class="col-lg-5" id="ctnt-info">
+					<br>
+					<br>
+					<center>
+						<h1 class="h1-font">Subscribe Now!</h1>
+					</center>
+					<br>
+					<h2 class="h2-font">Registration</h1>
+						<br>
+						<form name="frm_register" id="frm_register" class="needs-validation" novalidate>
+							<!-- Username -->
+							<div class="form-group">
+								<label for="uname">Username:</label>
+								<input type="text" required class="form-control" name="uname" id="uname"
+									placeholder="Username" />
+								<div class="valid-feedback">Looks good!</div>
+								<div class="invalid-feedback">Username Required</div>
+							</div>
+							<!-- Password -->
+							<div class="form-group">
+								<label for="ipass">Password:</label>
+								<input type="password" required class="form-control" name="ipass" id="ipass"
+									placeholder="Password" pattern=".{8,}" onkeyup="validatePasswords()" />
+								<div class="valid-feedback">Looks good!</div>
+								<div class="invalid-feedback">Invalid Password Format (Must contain 8 or more
+									characters)</div>
+							</div>
+							<!-- Confirm Password -->
+							<div class="form-group">
+								<label for="cpass">Confirm Password:</label>
+								<input type="password" required class="form-control" name="cpass" id="cpass"
+									placeholder="Confirm Password" pattern=".{8,}" onkeyup="validatePasswords()" />
+								<div class="valid-feedback">Looks good!</div>
+								<div class="invalid-feedback">Password does not match.</div>
+							</div>
+							<!-- First Name -->
+							<div class="form-group">
+								<label for="fname">First Name:</label>
+								<input type="text" required class="form-control" name="fname" id="fname"
+									placeholder="First Name" />
+								<div class="valid-feedback">Looks good!</div>
+								<div class="invalid-feedback">First Name Required</div>
+							</div>
+							<!-- Middle Name -->
+							<div>
+								<label for="mname">Middle Initial:</label>
+								<select id="mname" name="mname">
+									<option value="N/A" checked>⠀</option>
+									<option value="A">A.</option>
+									<option value="B">B.</option>
+									<option value="C">C.</option>
+									<option value="D">D.</option>
+									<option value="E">E.</option>
+								</select>
+							</div>
+							<!-- Last Name -->
+							<div class="form-group">
+								<label for="lname">Last Name:</label>
+								<input type="text" required class="form-control" name="lname" id="lname"
+									placeholder="Last Name" />
+								<div class="valid-feedback">Looks good!</div>
+								<div class="invalid-feedback">Last Name Required</div>
+							</div>
+							<!-- Gender -->
+							<div>
+								<label for="gnd">Gender:</label>
+								<input type="radio" name="gnd" id="gnd" value="Male" checked />
+								<label for="gnd">Male</label>
+								<input type="radio" name="gnd" id="gnd" value="Female" />
+								<label for="gnd">Female</label>
+							</div>
+							<!-- Interests -->
+							<div>
+								<label for="interests">Interests</label>
+								<input type="checkbox" id="programming" name="programming" value="programming">
+								<label for="programming">Programming</label>
+								<input type="checkbox" id="design" name="design" value="design">
+								<label for="design">Design</label>
+								<input type="checkbox" id="systemadmin" name="systemadmin" value="systemadmin">
+								<label for="systemadmin">System Admin</label>
+							</div>
+							<!-- Email -->
+							<div class="form-group">
+								<label for="eml">Email:</label>
+								<input type="text" required class="form-control" name="eml" id="eml" placeholder="Email"
+									pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+								<div class="valid-feedback">Looks good!</div>
+								<div class="invalid-feedback">Email Required</div>
+							</div>
+
+							<!-- Submit Button -->
+							<center>
+								<div>
+									<input type="submit" name="sub" id="sub" value="REGISTER" />
+								</div>
+							</center>
+						</form>
+						<br>
+						<br>
+						<br>
+				</div>
+				<div class="col-lg-1" id="ctnt-spc2"></div>
+			</div>
+			<div class="row">
+				<!--FOOTER-->
+				<div class="col-lg-12" id="ftr">
+					<br>
+					<center>
+						<h3 id="ftr-info">
+							Copyright © &nbsp; | &nbsp; Jacob Laurel &nbsp; | &nbsp; BSCS-2
+							&nbsp; | &nbsp; April 2023 &nbsp; | &nbsp; All Rights Reserved.
+						</h3>
+					</center>
+					<br>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12" id="ctnt-spc-bot">
+					<br>
+					<br>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
